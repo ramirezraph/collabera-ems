@@ -4,7 +4,7 @@ namespace EMS.Persistence.Repositories;
 
 public interface IRepository<T> where T : IEntity
 {
-    ICollection<T> GetAll();
+    IEnumerable<T> GetAll();
     T? GetById(Guid Id);
     T? Add(T entity);
     T? Update(Guid Id, T updatedEntity);

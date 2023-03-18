@@ -17,7 +17,7 @@ public static class SeedData
                 Name = "Raphael Ramirez",
                 DateOfBirth = new DateTime(1999, 5, 19),
                 DepartmentId = adminDepartment.Id,
-                Department = adminDepartment,
+                // Department = adminDepartment,
                 Email = "raphaelisiah.ramirez@gmail.com",
                 Phone = "09923355642"
             }

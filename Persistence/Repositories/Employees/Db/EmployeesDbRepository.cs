@@ -1,34 +1,26 @@
-using System.Linq;
 using EMS.Models;
+using EMS.Persistence.Context;
 using EMS.Persistence.Repositories.Departments;
+using Microsoft.EntityFrameworkCore;
 
-namespace EMS.Persistence.Repositories.Employees;
+namespace EMS.Persistence.Repositories.Employees.Db;
 
-public class EmployeesInMemRepository : IEmployeesRepository
+public class EmployeesDbRepository : IEmployeesRepository
 {
-    private static List<Employee> _employees = new List<Employee>();
+    private ApplicationDbContext _dbContext;
     private IDepartmentsRepository _departmentsRepository;
 
-    public EmployeesInMemRepository(IDepartmentsRepository departmentsRepository)
+    public EmployeesDbRepository(ApplicationDbContext dbContext, IDepartmentsRepository departmentsRepository)
     {
+        _dbContext = dbContext;
         _departmentsRepository = departmentsRepository;
-
-        _employees.Add(new Employee
-        {
-            Id = Guid.NewGuid(),
-            Name = "Raphael Ramirez",
-            DateOfBirth = new DateTime(1999, 5, 19),
-            Department = _departmentsRepository.GetAll().First(),
-            Email = "raphaelisiah.ramirez@gmail.com",
-            Phone = "09923355642"
-        });
     }
 
     public Employee? Add(Employee entity)
     {
         entity.Id = Guid.NewGuid();
-        _employees.Add(entity);
-
+        _dbContext.Employees.Add(entity);
+        _dbContext.SaveChanges();
         return entity;
     }
 
@@ -40,19 +32,24 @@ public class EmployeesInMemRepository : IEmployeesRepository
             return null;
         }
 
-        _employees.Remove(employee);
-
+        _dbContext.Employees.Remove(employee);
+        _dbContext.SaveChanges();
         return employee;
     }
 
     public IEnumerable<Employee> GetAll()
     {
-        return _employees.AsEnumerable();
+        return _dbContext.Employees
+            .AsNoTracking()
+            .Include(e => e.Department)
+            .ToList();
     }
 
     public Employee? GetById(Guid Id)
     {
-        return _employees.Find(employee => employee.Id == Id);
+        return _dbContext.Employees
+            .Include(e => e.Department)
+            .FirstOrDefault(employee => employee.Id == Id);
     }
 
     public Employee? Update(Guid Id, Employee updatedEntity)
@@ -70,6 +67,8 @@ public class EmployeesInMemRepository : IEmployeesRepository
 
         employee.Department = updatedEntity.Department;
         employee.DepartmentId = updatedEntity.DepartmentId;
+
+        _dbContext.SaveChanges();
 
         return employee;
     }
@@ -89,5 +88,7 @@ public class EmployeesInMemRepository : IEmployeesRepository
         }
 
         employee.Department = department;
+
+        _dbContext.SaveChanges();
     }
 }

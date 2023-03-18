@@ -1,25 +1,24 @@
 using EMS.Models;
+using EMS.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
-namespace EMS.Persistence.Repositories.Departments;
+namespace EMS.Persistence.Repositories.Departments.Db;
 
-public class DepartmentsInMemRepository : IDepartmentsRepository
+public class DepartmentsDbRepository : IDepartmentsRepository
 {
-    private List<Department> _departments;
 
-    public DepartmentsInMemRepository()
+    private ApplicationDbContext _dbContext;
+
+    public DepartmentsDbRepository(ApplicationDbContext dbContext)
     {
-        _departments = new List<Department>()
-        {
-            new Department { Id = Guid.NewGuid(), Name = "Admin" },
-            new Department { Id = Guid.NewGuid(), Name = "IT" },
-            new Department { Id = Guid.NewGuid(), Name = "HR" }
-        };
+        _dbContext = dbContext;
     }
 
     public Department? Add(Department entity)
     {
         entity.Id = Guid.NewGuid();
-        _departments.Add(entity);
+        _dbContext.Departments.Add(entity);
+        _dbContext.SaveChanges();
 
         return entity;
     }
@@ -33,18 +32,22 @@ public class DepartmentsInMemRepository : IDepartmentsRepository
             return null;
         }
 
-        _departments.Remove(department);
+        _dbContext.Departments.Remove(department);
+        _dbContext.SaveChanges();
         return department;
     }
 
     public IEnumerable<Department> GetAll()
     {
-        return _departments.AsEnumerable();
+        return _dbContext.Departments
+            .AsNoTracking()
+            .ToList();
     }
 
     public Department? GetById(Guid Id)
     {
-        return _departments.Find(department => department.Id == Id);
+        return _dbContext.Departments
+            .FirstOrDefault(department => department.Id == Id);
     }
 
     public Department? Update(Guid Id, Department updatedEntity)
@@ -57,6 +60,7 @@ public class DepartmentsInMemRepository : IDepartmentsRepository
         }
 
         department.Name = updatedEntity.Name;
+        _dbContext.SaveChanges();
 
         return department;
     }
