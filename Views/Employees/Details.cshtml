@@ -8,7 +8,7 @@
         <h6 class="card-subtitle mb-2 text-muted">@Model.Department.Name</h6>
         <p><strong>Email:</strong> @Model.Email</p>
         <p><strong>Phone:</strong> @Model.Phone</p>
-        <p><strong>Birthdate:</strong> @Model.DateOfBirth.ToString()</p>
+        <p><strong>Birthdate:</strong> @Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
         <a asp-controller="Employees" asp-action="Index" class="card-link">Back to list</a>
     </div>
 </div>

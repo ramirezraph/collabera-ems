@@ -12,7 +12,7 @@ public class NewEmployeeFormModel
 
     [Required(ErrorMessage = "Please select a date.")]
     [DataType(DataType.Date, ErrorMessage = "Please select a date.")]
-    public DateOnly DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
     [Required]
     [EmailAddress]
@@ -28,7 +28,7 @@ public class NewEmployeeFormModel
     public NewEmployeeFormModel()
     { }
 
-    public NewEmployeeFormModel(string name, DateOnly dateOfBirth, string email, string phone, Guid departmentId)
+    public NewEmployeeFormModel(string name, DateTime dateOfBirth, string email, string phone, Guid departmentId)
     {
         Name = name;
         DateOfBirth = dateOfBirth;

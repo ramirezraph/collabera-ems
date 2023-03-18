@@ -17,7 +17,7 @@ public class EmployeesInMemRepository : IEmployeesRepository
         {
             Id = Guid.NewGuid(),
             Name = "Raphael Ramirez",
-            DateOfBirth = DateOnly.FromDateTime(new DateTime(1999, 5, 19)),
+            DateOfBirth = new DateTime(1999, 5, 19),
             Department = _departmentsRepository.GetAll().First(),
             Email = "raphaelisiah.ramirez@gmail.com",
             Phone = "09923355642"
@@ -90,5 +90,4 @@ public class EmployeesInMemRepository : IEmployeesRepository
 
         employee.Department = department;
     }
-
 }

@@ -1,8 +1,5 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using EMS.Models.Interfaces;
-using System.ComponentModel;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EMS.Models;
 
@@ -15,7 +12,7 @@ public class Employee : IEntity
 
     [Required]
     [DataType(DataType.Date)]
-    public DateOnly DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
     [Required]
     [EmailAddress]

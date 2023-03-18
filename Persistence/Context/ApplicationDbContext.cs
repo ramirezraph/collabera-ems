@@ -7,6 +7,10 @@ public class ApplicationDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+
+        string connectionString = @"Server=DESKTOP-DP6EMGM;Database=EMSDatabase;Integrated Security=True;";
+        optionsBuilder.UseSqlServer(connectionString);
+
         base.OnConfiguring(optionsBuilder);
     }
 

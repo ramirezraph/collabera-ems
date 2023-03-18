@@ -15,7 +15,8 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 Name = "Raphael Ramirez",
-                DateOfBirth = DateOnly.FromDateTime(new DateTime(1999, 5, 19)),
+                DateOfBirth = new DateTime(1999, 5, 19),
+                DepartmentId = adminDepartment.Id,
                 Department = adminDepartment,
                 Email = "raphaelisiah.ramirez@gmail.com",
                 Phone = "09923355642"
