@@ -47,7 +47,7 @@ public class EmployeesInMemRepository : IEmployeesRepository
 
     public ICollection<Employee> GetAll()
     {
-        return _employees.AsReadOnly();
+        return _employees.ToList();
     }
 
     public Employee? GetById(Guid Id)
@@ -67,6 +67,9 @@ public class EmployeesInMemRepository : IEmployeesRepository
         employee.DateOfBirth = updatedEntity.DateOfBirth;
         employee.Email = updatedEntity.Email;
         employee.Phone = updatedEntity.Phone;
+
+        employee.Department = updatedEntity.Department;
+        employee.DepartmentId = updatedEntity.DepartmentId;
 
         return employee;
     }

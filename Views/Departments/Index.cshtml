@@ -8,7 +8,6 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Department ID</th>
             <th scope="col">Name</th>
             <th scope="col">Actions</th>
         </tr>
@@ -17,7 +16,6 @@
         @foreach (var department in Model)
         {
             <tr>
-                <th scope="row">@department.Id</th>
                 <td>@department.Name</td>
                 <td>
                     <a asp-controller="Departments" asp-action="Details" asp-route-departmentId="@department.Id"

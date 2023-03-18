@@ -1,0 +1,14 @@
+@model Employee
+
+<h1>Employee Details</h1>
+
+<div class="card" style="width: 25%;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Department.Name</h6>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Birthdate:</strong> @Model.DateOfBirth.ToString()</p>
+        <a asp-controller="Employees" asp-action="Index" class="card-link">Back to list</a>
+    </div>
+</div>

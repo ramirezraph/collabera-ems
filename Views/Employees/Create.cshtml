@@ -1,0 +1,46 @@
+@model CreateEmployeeViewModel
+
+@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1> Create Employee</h1>
+
+
+<form method="post" asp-action="Create" asp-controller="Employees" class="w-50">
+    <div>
+        <label class="form-label" asp-for="NewEmployee.Name"></label>
+        <input class="form-control" asp-for="NewEmployee.Name" />
+        <span asp-validation-for="NewEmployee.Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="form-label" asp-for="NewEmployee.DateOfBirth"></label>
+        <input class="form-control" asp-for="NewEmployee.DateOfBirth" />
+        <span asp-validation-for="NewEmployee.DateOfBirth" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="form-label" asp-for="NewEmployee.Email"></label>
+        <input class="form-control" asp-for="NewEmployee.Email" />
+        <span asp-validation-for="NewEmployee.Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="form-label" asp-for="NewEmployee.Phone"></label>
+        <input class="form-control" asp-for="NewEmployee.Phone" />
+        <span asp-validation-for="NewEmployee.Phone" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="NewEmployee.DepartmentId"></label>
+        <select asp-for="NewEmployee.DepartmentId" class="form-select">
+            @foreach (var department in Model.Departments)
+            {
+                <option value="@department.Id">@department.Name</option>
+            }
+        </select>
+        <span asp-validation-for="NewEmployee.DepartmentId" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary mt-3 px-3" type="submit">Create</button>
+</form>
