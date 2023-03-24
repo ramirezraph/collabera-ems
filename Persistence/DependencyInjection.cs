@@ -3,6 +3,7 @@ using EMS.Persistence.Repositories.Departments;
 using EMS.Persistence.Repositories.Departments.Db;
 using EMS.Persistence.Repositories.Employees;
 using EMS.Persistence.Repositories.Employees.Db;
+using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Persistence;
 

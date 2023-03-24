@@ -28,14 +28,6 @@ public class NewEmployeeFormModel
     public NewEmployeeFormModel()
     { }
 
-    public NewEmployeeFormModel(string name, DateTime dateOfBirth, string email, string phone, Guid departmentId)
-    {
-        Name = name;
-        DateOfBirth = dateOfBirth;
-        Email = email;
-        Phone = phone;
-        DepartmentId = departmentId;
-    }
 
     public NewEmployeeFormModel(Employee employeeModel)
     {
