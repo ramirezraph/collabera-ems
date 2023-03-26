@@ -7,7 +7,7 @@ namespace EMS.Persistence.Repositories.Employees;
 public class EmployeesInMemRepository : IEmployeesRepository
 {
     private static List<Employee> _employees = new List<Employee>();
-    private IDepartmentsRepository _departmentsRepository;
+    private readonly IDepartmentsRepository _departmentsRepository;
 
     public EmployeesInMemRepository(IDepartmentsRepository departmentsRepository)
     {

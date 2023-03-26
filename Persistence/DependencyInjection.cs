@@ -3,7 +3,6 @@ using EMS.Persistence.Repositories.Departments;
 using EMS.Persistence.Repositories.Departments.Db;
 using EMS.Persistence.Repositories.Employees;
 using EMS.Persistence.Repositories.Employees.Db;
-using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Persistence;
 
@@ -18,6 +17,7 @@ public static class DependencyInjection
         // services.AddSingleton<IEmployeesRepository, EmployeesInMemRepository>();
 
         // MSSQL Database Repositories
+        // Dependency Inversion
         services.AddScoped<IDepartmentsRepository, DepartmentsDbRepository>();
         services.AddScoped<IEmployeesRepository, EmployeesDbRepository>();
 

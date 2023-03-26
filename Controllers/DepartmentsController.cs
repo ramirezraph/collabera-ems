@@ -30,7 +30,7 @@ public class DepartmentsController : Controller
     {
         if (ModelState.IsValid)
         {
-            var user = _departmentsRepository.Add(newDepartment);
+            _ = _departmentsRepository.Add(newDepartment);
             return RedirectToAction("Index");
         }
         return View();
@@ -43,7 +43,7 @@ public class DepartmentsController : Controller
     }
     public IActionResult Delete(Guid departmentId)
     {
-        var userlist = _departmentsRepository.Delete(departmentId);
+        _ = _departmentsRepository.Delete(departmentId);
         return RedirectToAction("Index");
     }
 
@@ -57,7 +57,7 @@ public class DepartmentsController : Controller
     [HttpPost]
     public IActionResult Update(Department updatedDepartment)
     {
-        var department = _departmentsRepository.Update(updatedDepartment.Id, updatedDepartment);
+        _ = _departmentsRepository.Update(updatedDepartment.Id, updatedDepartment);
         return RedirectToAction("Index");
     }
 }

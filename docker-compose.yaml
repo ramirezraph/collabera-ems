@@ -1,0 +1,21 @@
+version: '1'
+services:
+  ems-web:
+    build: .
+    ports:
+      - 6001:80
+    environment:
+      - ConnectionStrings__Server=ems-database
+      - ConnectionStrings__Database=EMSDatabase
+      - ConnectionStrings__Username=sa
+      - ConnectionStrings__Password=Pa$$w0rd!
+    depends_on:
+      - ems-database
+    restart: on-failure
+  ems-database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Pa$$w0rd!

@@ -7,8 +7,10 @@ namespace EMS.Controllers;
 
 public class EmployeesController : Controller
 {
-    private IEmployeesRepository _employeesRepository;
-    private IDepartmentsRepository _departmentsRepository;
+
+    // Dependency Injection
+    private readonly IEmployeesRepository _employeesRepository;
+    private readonly IDepartmentsRepository _departmentsRepository;
 
     public EmployeesController(IEmployeesRepository employeesRepository, IDepartmentsRepository departmentsRepository)
     {
@@ -73,7 +75,7 @@ public class EmployeesController : Controller
     }
     public IActionResult Delete(Guid employeeId)
     {
-        var userlist = _employeesRepository.Delete(employeeId);
+        _ = _employeesRepository.Delete(employeeId);
         return RedirectToAction("Index");
     }
 
@@ -116,7 +118,7 @@ public class EmployeesController : Controller
             DepartmentId = selectedDepartment.Id
         };
 
-        _employeesRepository.Update(viewModel.NewEmployee.Id, updatedEmployee);
+        _ = _employeesRepository.Update(viewModel.NewEmployee.Id, updatedEmployee);
 
         return RedirectToAction("Index");
     }
